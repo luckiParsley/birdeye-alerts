@@ -3,6 +3,7 @@ import json
 from dotenv import load_dotenv
 import requests
 import time
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "1"
 import pygame
 
 
