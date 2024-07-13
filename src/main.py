@@ -2,8 +2,9 @@ import os
 import json
 from dotenv import load_dotenv
 import requests
-import pygame
 import time
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "1"
+import pygame
 
 
 def load_config():
@@ -48,18 +49,16 @@ def make_request(address, api):
 def check_price(price, upper, lower, is_above, is_below):
 
     if price > upper:
-        print("price is above")
+        print("price is above threshold")
         is_above = True
     if price < lower:
-        print("price is below")
+        print("price is below threshold")
         is_below = True
     return is_above, is_below
     
 def send_alert(sound, sound_config):
-    print('sending alert')
     sound_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    sound = os.path.join(sound_dir, sound)
-    print(sound)
+    sound = os.path.join(sound_dir,'wav-files', sound)
 
     pygame.mixer.init()
     sound = pygame.mixer.Sound(sound)
@@ -88,6 +87,3 @@ def main():
         elif is_below == True:
             send_alert('putt.wav', sound_config)
         time.sleep(15)
-
-if __name__ == "__main__":
-    main()

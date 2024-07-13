@@ -1,2 +1,4 @@
 .env
 src/configBuild
+src/__pycache__/
+__pycache__/
